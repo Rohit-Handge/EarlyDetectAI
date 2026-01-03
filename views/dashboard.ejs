@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %> - HealthAI</title>
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    .risk-card {
+      transition: all 0.3s;
+    }
+    
+    .risk-card:hover {
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+    
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.375rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+    
+    .badge-low {
+      background: rgba(34, 197, 94, 0.1);
+      color: rgb(22, 163, 74);
+    }
+    
+    .badge-moderate {
+      background: rgba(249, 115, 22, 0.1);
+      color: rgb(234, 88, 12);
+    }
+    
+    .badge-high {
+      background: rgba(239, 68, 68, 0.1);
+      color: rgb(220, 38, 38);
+    }
+    
+    .progress-container {
+      width: 100%;
+      height: 12px;
+      background: var(--muted);
+      border-radius: 9999px;
+      overflow: hidden;
+    }
+    
+    .progress-bar-fill {
+      height: 100%;
+      transition: width 0.3s;
+    }
+    
+    .alert-info {
+      padding: 1rem;
+      border-radius: calc(var(--radius) - 0.25rem);
+      background: rgba(59, 130, 246, 0.05);
+      border: 1px solid rgba(59, 130, 246, 0.2);
+    }
+  </style>
+</head>
+<body>
+  <%- include('partials/navbar') %>
+  
+  <div class="pt-24 pb-16 px-4">
+    <div class="container max-w-7xl mx-auto">
+      <!-- Header -->
+      <div class="mb-8">
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
+          <div>
+            <h1 class="text-4xl font-bold mb-4">Your Risk Analysis</h1>
+            <p style="color: var(--muted-foreground);">
+              Based on your health data, here are your personalized disease risk assessments
+            </p>
+          </div>
+          <a href="/assessment" class="btn btn-outline">Retake Assessment</a>
+        </div>
+        
+        <div class="alert-info">
+          <div class="flex items-start gap-4">
+            <svg style="width: 20px; height: 20px; color: rgb(59, 130, 246); flex-shrink: 0; margin-top: 2px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            <p class="text-sm" style="flex: 1;">
+              <strong>Important:</strong> These risk scores are probability estimates based on AI analysis. They are NOT medical diagnoses. Please consult with a healthcare professional for proper evaluation and diagnosis.
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Risk Cards -->
+      <div class="grid grid-cols-1 grid-md-cols-2 grid-lg-cols-3 gap-6 mb-12">
+        <!-- Type 2 Diabetes -->
+        <div class="card glass risk-card" style="border-color: rgba(249, 115, 22, 0.2);">
+          <div class="flex items-start justify-between mb-6">
+            <div style="width: 48px; height: 48px; background: rgba(249, 115, 22, 0.1); border-radius: 0.5rem; display: flex; align-items: center; justify-content: center;">
+              <svg style="width: 24px; height: 24px; color: rgb(234, 88, 12);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+              </svg>
+            </div>
+            <span class="badge badge-moderate">Moderate Risk</span>
+          </div>
+          
+          <h3 class="text-xl font-semibold mb-4">Type 2 Diabetes</h3>
+          <p class="text-sm mb-6" style="color: var(--muted-foreground);">Risk Probability Score</p>
+          
+          <div class="mb-4">
+            <div class="flex items-end gap-4 mb-4">
+              <span class="text-4xl font-bold">42%</span>
+              <span class="text-sm mb-4" style="color: var(--muted-foreground);">confidence: 87%</span>
+            </div>
+            <div class="progress-container">
+              <div class="progress-bar-fill" style="width: 42%; background: rgb(249, 115, 22);"></div>
+            </div>
+          </div>
+          
+          <a href="/recommendations" class="btn btn-outline w-full">View Recommendations</a>
+        </div>
+        
+        <!-- Hypertension -->
+        <div class="card glass risk-card" style="border-color: rgba(234, 179, 8, 0.2);">
+          <div class="flex items-start justify-between mb-6">
+            <div style="width: 48px; height: 48px; background: rgba(234, 179, 8, 0.1); border-radius: 0.5rem; display: flex; align-items: center; justify-content: center;">
+              <svg style="width: 24px; height: 24px; color: rgb(202, 138, 4);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+              </svg>
+            </div>
+            <span class="badge badge-moderate">Moderate Risk</span>
+          </div>
+          
+          <h3 class="text-xl font-semibold mb-4">Hypertension</h3>
+          <p class="text-sm mb-6" style="color: var(--muted-foreground);">Risk Probability Score</p>
+          
+          <div class="mb-4">
+            <div class="flex items-end gap-4 mb-4">
+              <span class="text-4xl font-bold">38%</span>
+              <span class="text-sm mb-4" style="color: var(--muted-foreground);">confidence: 82%</span>
+            </div>
+            <div class="progress-container">
+              <div class="progress-bar-fill" style="width: 38%; background: rgb(234, 179, 8);"></div>
+            </div>
+          </div>
+          
+          <a href="/recommendations" class="btn btn-outline w-full">View Recommendations</a>
+        </div>
+        
+        <!-- Early Cardiac Risk -->
+        <div class="card glass risk-card" style="border-color: rgba(249, 115, 22, 0.2);">
+          <div class="flex items-start justify-between mb-6">
+            <div style="width: 48px; height: 48px; background: rgba(249, 115, 22, 0.1); border-radius: 0.5rem; display: flex; align-items: center; justify-content: center;">
+              <svg style="width: 24px; height: 24px; color: rgb(234, 88, 12);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+              </svg>
+            </div>
+            <span class="badge badge-moderate">Moderate Risk</span>
+          </div>
+          
+          <h3 class="text-xl font-semibold mb-4">Early Cardiac Risk</h3>
+          <p class="text-sm mb-6" style="color: var(--muted-foreground);">Risk Probability Score</p>
+          
+          <div class="mb-4">
+            <div class="flex items-end gap-4 mb-4">
+              <span class="text-4xl font-bold">31%</span>
+              <span class="text-sm mb-4" style="color: var(--muted-foreground);">confidence: 79%</span>
+            </div>
+            <div class="progress-container">
+              <div class="progress-bar-fill" style="width: 31%; background: rgb(249, 115, 22);"></div>
+            </div>
+          </div>
+          
+          <a href="/recommendations" class="btn btn-outline w-full">View Recommendations</a>
+        </div>
+        
+        <!-- Liver Disorders -->
+        <div class="card glass risk-card" style="border-color: rgba(34, 197, 94, 0.2);">
+          <div class="flex items-start justify-between mb-6">
+            <div style="width: 48px; height: 48px; background: rgba(34, 197, 94, 0.1); border-radius: 0.5rem; display: flex; align-items: center; justify-content: center;">
+              <svg style="width: 24px; height: 24px; color: rgb(22, 163, 74);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+              </svg>
+            </div>
+            <span class="badge badge-low">Low Risk</span>
+          </div>
+          
+          <h3 class="text-xl font-semibold mb-4">Liver Disorders</h3>
+          <p class="text-sm mb-6" style="color: var(--muted-foreground);">Risk Probability Score</p>
+          
+          <div class="mb-4">
+            <div class="flex items-end gap-4 mb-4">
+              <span class="text-4xl font-bold">18%</span>
+              <span class="text-sm mb-4" style="color: var(--muted-foreground);">confidence: 74%</span>
+            </div>
+            <div class="progress-container">
+              <div class="progress-bar-fill" style="width: 18%; background: rgb(34, 197, 94);"></div>
+            </div>
+          </div>
+          
+          <a href="/recommendations" class="btn btn-outline w-full">View Recommendations</a>
+        </div>
+        
+        <!-- Mental Health Risk -->
+        <div class="card glass risk-card" style="border-color: rgba(34, 197, 94, 0.2);">
+          <div class="flex items-start justify-between mb-6">
+            <div style="width: 48px; height: 48px; background: rgba(34, 197, 94, 0.1); border-radius: 0.5rem; display: flex; align-items: center; justify-content: center;">
+              <svg style="width: 24px; height: 24px; color: rgb(22, 163, 74);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+              </svg>
+            </div>
+            <span class="badge badge-low">Low Risk</span>
+          </div>
+          
+          <h3 class="text-xl font-semibold mb-4">Mental Health Risk</h3>
+          <p class="text-sm mb-6" style="color: var(--muted-foreground);">Risk Probability Score</p>
+          
+          <div class="mb-4">
+            <div class="flex items-end gap-4 mb-4">
+              <span class="text-4xl font-bold">25%</span>
+              <span class="text-sm mb-4" style="color: var(--muted-foreground);">confidence: 71%</span>
+            </div>
+            <div class="progress-container">
+              <div class="progress-bar-fill" style="width: 25%; background: rgb(34, 197, 94);"></div>
+            </div>
+          </div>
+          
+          <a href="/recommendations" class="btn btn-outline w-full">View Recommendations</a>
+        </div>
+      </div>
+      
+      <!-- Lab Trends Section -->
+      <div class="mb-12">
+        <h2 class="text-2xl font-bold mb-4">Lab Value Trends</h2>
+        <p class="mb-8" style="color: var(--muted-foreground);">Tracking changes in your key health markers over time</p>
+        
+        <div class="grid grid-cols-1 grid-lg-cols-3 gap-6">
+          <div class="card glass">
+            <div class="flex items-center justify-between mb-6">
+              <h3 class="font-semibold">Fasting Glucose</h3>
+              <span class="text-sm font-medium" style="color: rgb(234, 88, 12);">Trending Up</span>
+            </div>
+            <div style="height: 180px; background: rgba(255, 255, 255, 0.03); border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+              <span style="color: var(--muted-foreground);">Chart Placeholder</span>
+            </div>
+            <div class="flex items-center justify-between text-sm" style="color: var(--muted-foreground);">
+              <span>Current: 118 mg/dL</span>
+              <span>Target: &lt; 100 mg/dL</span>
+            </div>
+          </div>
+          
+          <div class="card glass">
+            <div class="flex items-center justify-between mb-6">
+              <h3 class="font-semibold">Total Cholesterol</h3>
+              <span class="text-sm font-medium" style="color: rgb(202, 138, 4);">Trending Up</span>
+            </div>
+            <div style="height: 180px; background: rgba(255, 255, 255, 0.03); border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+              <span style="color: var(--muted-foreground);">Chart Placeholder</span>
+            </div>
+            <div class="flex items-center justify-between text-sm" style="color: var(--muted-foreground);">
+              <span>Current: 202 mg/dL</span>
+              <span>Target: &lt; 200 mg/dL</span>
+            </div>
+          </div>
+          
+          <div class="card glass">
+            <div class="flex items-center justify-between mb-6">
+              <h3 class="font-semibold">Blood Pressure (Systolic)</h3>
+              <span class="text-sm font-medium" style="color: rgb(234, 88, 12);">Trending Up</span>
+            </div>
+            <div style="height: 180px; background: rgba(255, 255, 255, 0.03); border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+              <span style="color: var(--muted-foreground);">Chart Placeholder</span>
+            </div>
+            <div class="flex items-center justify-between text-sm" style="color: var(--muted-foreground);">
+              <span>Current: 135 mmHg</span>
+              <span>Target: &lt; 120 mmHg</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- CTA -->
+      <div class="card glass text-center" style="padding: 2rem;">
+        <h2 class="text-2xl font-bold mb-6">Ready for Your Personalized Action Plan?</h2>
+        <p class="max-w-2xl mx-auto mb-8" style="color: var(--muted-foreground);">
+          Get detailed preventive recommendations tailored to your risk profile, including lifestyle changes, monitoring schedules, and medical consultations.
+        </p>
+        <a href="/recommendations" class="btn btn-primary btn-lg">View Full Recommendations</a>
+      </div>
+    </div>
+  </div>
+  
+  <script src="/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <%- include('partials/navbar') %>
+  
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-bg">
+      <div class="hero-gradient-1"></div>
+      <div class="hero-gradient-2"></div>
+      <div class="hero-gradient-3"></div>
+    </div>
+    
+    <div class="container max-w-6xl text-center">
+      <div class="glass" style="display: inline-block; padding: 0.5rem 1rem; border-radius: 9999px; margin-bottom: 1rem;">
+        <span class="text-sm font-medium text-primary">AI-Powered Healthcare Innovation</span>
+      </div>
+      
+      <h1 class="hero-title">
+        Detect What Patients <span class="text-primary">Don't Even Know</span> They Have
+      </h1>
+      
+      <p class="hero-description">
+        Advanced AI analyzes hidden health signals to detect silent diseases before symptoms appear. Early detection saves lives through preventive care and timely intervention.
+      </p>
+      
+      <div class="flex flex-col md-flex items-center justify-center gap-4 mb-16" style="margin-bottom: 4rem;">
+        <a href="/assessment" class="btn btn-primary btn-lg">Check My Risk</a>
+        <a href="#for-doctors" class="btn btn-outline btn-lg">For Doctors</a>
+      </div>
+      
+      <!-- Stats -->
+      <div class="grid grid-cols-1 grid-md-cols-3 gap-6 max-w-4xl mx-auto">
+        <div class="glass card">
+          <div class="text-4xl font-bold text-primary mb-4">92%</div>
+          <div class="text-sm" style="color: var(--muted-foreground);">Early Detection Accuracy</div>
+        </div>
+        <div class="glass card">
+          <div class="text-4xl font-bold text-secondary mb-4">5+</div>
+          <div class="text-sm" style="color: var(--muted-foreground);">Silent Diseases Tracked</div>
+        </div>
+        <div class="glass card">
+          <div class="text-4xl font-bold text-accent mb-4">10K+</div>
+          <div class="text-sm" style="color: var(--muted-foreground);">Lives Improved</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Silent Diseases Section -->
+  <section class="py-20 px-4">
+    <div class="container max-w-6xl">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-5xl font-bold mb-4">Understanding Silent Diseases</h2>
+        <p class="text-lg max-w-2xl mx-auto" style="color: var(--muted-foreground);">
+          Many serious health conditions develop without obvious symptoms. Our AI detects early warning signs from everyday health data.
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 grid-md-cols-2 grid-lg-cols-3 gap-6">
+        <div class="card glass">
+          <div style="width: 48px; height: 48px; background: rgba(var(--primary), 0.1); border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+            <svg class="icon text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-4">Type 2 Diabetes</h3>
+          <p class="text-sm" style="color: var(--muted-foreground);">
+            Detect pre-diabetic conditions through glucose trends, lifestyle patterns, and metabolic indicators.
+          </p>
+        </div>
+        
+        <div class="card glass">
+          <div style="width: 48px; height: 48px; background: rgba(var(--secondary), 0.1); border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+            <svg class="icon text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-4">Hypertension</h3>
+          <p class="text-sm" style="color: var(--muted-foreground);">
+            Identify early cardiovascular risks from blood pressure patterns and lifestyle factors.
+          </p>
+        </div>
+        
+        <div class="card glass">
+          <div style="width: 48px; height: 48px; background: rgba(var(--accent), 0.1); border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+            <svg class="icon text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-4">Mental Health Risk</h3>
+          <p class="text-sm" style="color: var(--muted-foreground);">
+            Analyze stress indicators, sleep patterns, and behavioral data for early intervention.
+          </p>
+        </div>
+        
+        <div class="card glass">
+          <div style="width: 48px; height: 48px; background: rgba(var(--primary), 0.1); border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+            <svg class="icon text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-4">Liver Disorders</h3>
+          <p class="text-sm" style="color: var(--muted-foreground);">
+            Monitor liver function through lab trends and lifestyle risk factors before symptoms emerge.
+          </p>
+        </div>
+        
+        <div class="card glass">
+          <div style="width: 48px; height: 48px; background: rgba(var(--secondary), 0.1); border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+            <svg class="icon text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-4">Cardiac Risk</h3>
+          <p class="text-sm" style="color: var(--muted-foreground);">
+            Early detection of heart disease risk through comprehensive cardiovascular analysis.
+          </p>
+        </div>
+        
+        <div class="card glass">
+          <div style="width: 48px; height: 48px; background: rgba(var(--accent), 0.1); border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+            <svg class="icon text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-4">Family History</h3>
+          <p class="text-sm" style="color: var(--muted-foreground);">
+            Genetic risk assessment combined with current health markers for personalized insights.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- How It Works -->
+  <section id="how-it-works" class="py-20 px-4 bg-muted">
+    <div class="container max-w-6xl">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-5xl font-bold mb-4">How EarlyDetect Works</h2>
+        <p class="text-lg max-w-2xl mx-auto" style="color: var(--muted-foreground);">
+          Our AI platform aggregates and analyzes multiple health signals to provide accurate risk assessments.
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 grid-md-cols-3 gap-8">
+        <div class="text-center">
+          <div style="width: 64px; height: 64px; background: var(--primary); border-radius: 1rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem;">
+            <span class="text-2xl font-bold" style="color: var(--primary-foreground);">1</span>
+          </div>
+          <h3 class="text-xl font-semibold mb-6">Aggregate Health Data</h3>
+          <p style="color: var(--muted-foreground);">
+            Collect lab results, lifestyle information, sleep patterns, stress levels, and family medical history.
+          </p>
+        </div>
+        
+        <div class="text-center">
+          <div style="width: 64px; height: 64px; background: var(--secondary); border-radius: 1rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem;">
+            <span class="text-2xl font-bold" style="color: var(--secondary-foreground);">2</span>
+          </div>
+          <h3 class="text-xl font-semibold mb-6">AI Risk Analysis</h3>
+          <p style="color: var(--muted-foreground);">
+            Advanced algorithms detect patterns and calculate probability scores for various health conditions.
+          </p>
+        </div>
+        
+        <div class="text-center">
+          <div style="width: 64px; height: 64px; background: var(--accent); border-radius: 1rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem;">
+            <span class="text-2xl font-bold" style="color: var(--accent-foreground);">3</span>
+          </div>
+          <h3 class="text-xl font-semibold mb-6">Preventive Action</h3>
+          <p style="color: var(--muted-foreground);">
+            Receive personalized recommendations for lifestyle changes, monitoring, and medical consultations.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- For Patients vs Doctors -->
+  <section class="py-20 px-4">
+    <div class="container max-w-6xl">
+      <div class="grid grid-cols-1 grid-md-cols-2 gap-8">
+        <!-- For Patients -->
+        <div id="for-patients" class="card glass">
+          <div style="width: 48px; height: 48px; background: rgba(var(--primary), 0.1); border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;">
+            <svg class="icon text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+            </svg>
+          </div>
+          <h3 class="text-2xl font-bold mb-4">For Patients</h3>
+          <p class="mb-6" style="color: var(--muted-foreground);">
+            Take control of your health with proactive monitoring and early detection.
+          </p>
+          <ul style="margin-bottom: 2rem; list-style: none;">
+            <li style="display: flex; align-items: start; gap: 0.75rem; margin-bottom: 0.75rem;">
+              <div style="width: 6px; height: 6px; background: var(--primary); border-radius: 50%; margin-top: 8px;"></div>
+              <span class="text-sm">Simple health data input and tracking</span>
+            </li>
+            <li style="display: flex; align-items: start; gap: 0.75rem; margin-bottom: 0.75rem;">
+              <div style="width: 6px; height: 6px; background: var(--primary); border-radius: 50%; margin-top: 8px;"></div>
+              <span class="text-sm">Clear risk probability scores with confidence levels</span>
+            </li>
+            <li style="display: flex; align-items: start; gap: 0.75rem; margin-bottom: 0.75rem;">
+              <div style="width: 6px; height: 6px; background: var(--primary); border-radius: 50%; margin-top: 8px;"></div>
+              <span class="text-sm">Personalized lifestyle recommendations</span>
+            </li>
+            <li style="display: flex; align-items: start; gap: 0.75rem;">
+              <div style="width: 6px; height: 6px; background: var(--primary); border-radius: 50%; margin-top: 8px;"></div>
+              <span class="text-sm">Guidance on next steps and monitoring</span>
+            </li>
+          </ul>
+          <a href="/assessment" class="btn btn-primary w-full">Start Your Assessment</a>
+        </div>
+        
+        <!-- For Doctors -->
+        <div id="for-doctors" class="card glass">
+          <div style="width: 48px; height: 48px; background: rgba(var(--secondary), 0.1); border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;">
+            <svg class="icon text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            </svg>
+          </div>
+          <h3 class="text-2xl font-bold mb-4">For Doctors</h3>
+          <p class="mb-6" style="color: var(--muted-foreground);">
+            Enhance patient care with AI-powered early detection and clinical insights.
+          </p>
+          <ul style="margin-bottom: 2rem; list-style: none;">
+            <li style="display: flex; align-items: start; gap: 0.75rem; margin-bottom: 0.75rem;">
+              <div style="width: 6px; height: 6px; background: var(--secondary); border-radius: 50%; margin-top: 8px;"></div>
+              <span class="text-sm">Comprehensive patient risk dashboards</span>
+            </li>
+            <li style="display: flex; align-items: start; gap: 0.75rem; margin-bottom: 0.75rem;">
+              <div style="width: 6px; height: 6px; background: var(--secondary); border-radius: 50%; margin-top: 8px;"></div>
+              <span class="text-sm">Clinical follow-up recommendations</span>
+            </li>
+            <li style="display: flex; align-items: start; gap: 0.75rem; margin-bottom: 0.75rem;">
+              <div style="width: 6px; height: 6px; background: var(--secondary); border-radius: 50%; margin-top: 8px;"></div>
+              <span class="text-sm">Suggested diagnostic tests and monitoring</span>
+            </li>
+            <li style="display: flex; align-items: start; gap: 0.75rem;">
+              <div style="width: 6px; height: 6px; background: var(--secondary); border-radius: 50%; margin-top: 8px;"></div>
+              <span class="text-sm">Priority alerts for high-risk patients</span>
+            </li>
+          </ul>
+          <a href="/doctor-portal" class="btn btn-outline w-full">Access Doctor Portal</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- CTA Section -->
+  <section class="py-20 px-4 relative">
+    <div style="position: absolute; inset: 0; z-index: -1;">
+      <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 800px; height: 400px; background: var(--primary); opacity: 0.2; border-radius: 50%; filter: blur(80px);"></div>
+    </div>
+    
+    <div class="container max-w-4xl text-center">
+      <h2 class="text-3xl md:text-5xl font-bold mb-6">Start Your Health Journey Today</h2>
+      <p class="text-lg mb-8" style="color: var(--muted-foreground);">
+        Early detection can be the difference between prevention and treatment. Take the first step towards proactive health management.
+      </p>
+      <div class="flex flex-col md-flex items-center justify-center gap-4">
+        <a href="/assessment" class="btn btn-primary btn-lg">Get Your Risk Assessment</a>
+        <a href="#how-it-works" class="btn btn-outline btn-lg">Learn More</a>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Footer -->
+  <footer>
+    <div class="container max-w-6xl">
+      <div class="footer-content">
+        <a href="/" class="logo">
+          <div class="logo-icon">ED</div>
+          <span class="font-semibold text-lg">EarlyDetect</span>
+        </a>
+        <div class="footer-links">
+          <a href="/privacy">Privacy Policy</a>
+          <a href="/terms">Terms of Service</a>
+          <a href="/contact">Contact</a>
+        </div>
+        <p class="text-sm" style="color: var(--muted-foreground);">© 2026 EarlyDetect. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+  
+  <script src="/script.js"></script>
+</body>
+</html>

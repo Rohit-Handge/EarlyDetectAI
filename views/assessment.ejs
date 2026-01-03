@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %> - HealthAI</title>
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    .assessment-container {
+      min-height: 100vh;
+      padding-top: 6rem;
+      padding-bottom: 4rem;
+    }
+    
+    .progress-bar {
+      width: 100%;
+      height: 8px;
+      background: var(--muted);
+      border-radius: 9999px;
+      overflow: hidden;
+      margin-bottom: 2rem;
+    }
+    
+    .progress-fill {
+      height: 100%;
+      background: var(--primary);
+      transition: width 0.3s;
+    }
+    
+    .step-content {
+      display: none;
+    }
+    
+    .step-content.active {
+      display: block;
+    }
+    
+    .nav-buttons {
+      display: flex;
+      justify-content: space-between;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <%- include('partials/navbar') %>
+  
+  <div class="assessment-container px-4">
+    <div class="container max-w-4xl mx-auto">
+      <div class="text-center mb-16">
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">Health Risk Assessment</h1>
+        <p class="text-lg" style="color: var(--muted-foreground);">
+          Complete this comprehensive assessment to receive your personalized disease risk analysis. All information is confidential and secure.
+        </p>
+      </div>
+      
+      <div class="card glass">
+        <!-- Progress Bar -->
+        <div class="progress-bar">
+          <div class="progress-fill" id="progress" style="width: 20%;"></div>
+        </div>
+        
+        <form action="/assessment" method="POST" id="assessmentForm">
+          <!-- Step 1: Demographics -->
+          <div class="step-content active" data-step="1">
+            <div class="mb-6">
+              <h2 class="text-2xl font-bold mb-4">Basic Information</h2>
+              <p style="color: var(--muted-foreground);">Let's start with your basic demographic information</p>
+            </div>
+            
+            <div class="grid grid-cols-1 grid-md-cols-2 gap-6">
+              <div class="form-group">
+                <label for="age" class="form-label">Age</label>
+                <input type="number" id="age" name="age" class="form-input" placeholder="35" required>
+              </div>
+              
+              <div class="form-group">
+                <label for="gender" class="form-label">Gender</label>
+                <select id="gender" name="gender" class="form-input" required>
+                  <option value="">Select gender</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              
+              <div class="form-group">
+                <label for="weight" class="form-label">Weight (kg)</label>
+                <input type="number" id="weight" name="weight" class="form-input" placeholder="70" required>
+              </div>
+              
+              <div class="form-group">
+                <label for="height" class="form-label">Height (cm)</label>
+                <input type="number" id="height" name="height" class="form-input" placeholder="170" required>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Step 2: Lab Values -->
+          <div class="step-content" data-step="2">
+            <div class="mb-6">
+              <h2 class="text-2xl font-bold mb-4">Laboratory Values</h2>
+              <p style="color: var(--muted-foreground);">Enter your most recent lab test results. Leave blank if not available.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 grid-md-cols-2 gap-6">
+              <div class="form-group">
+                <label for="glucose" class="form-label">Fasting Glucose (mg/dL)</label>
+                <input type="number" id="glucose" name="glucose" class="form-input" placeholder="90">
+              </div>
+              
+              <div class="form-group">
+                <label for="cholesterol" class="form-label">Total Cholesterol (mg/dL)</label>
+                <input type="number" id="cholesterol" name="cholesterol" class="form-input" placeholder="180">
+              </div>
+              
+              <div class="form-group">
+                <label for="hdl" class="form-label">HDL Cholesterol (mg/dL)</label>
+                <input type="number" id="hdl" name="hdl" class="form-input" placeholder="50">
+              </div>
+              
+              <div class="form-group">
+                <label for="ldl" class="form-label">LDL Cholesterol (mg/dL)</label>
+                <input type="number" id="ldl" name="ldl" class="form-input" placeholder="100">
+              </div>
+              
+              <div class="form-group">
+                <label for="triglycerides" class="form-label">Triglycerides (mg/dL)</label>
+                <input type="number" id="triglycerides" name="triglycerides" class="form-input" placeholder="150">
+              </div>
+              
+              <div class="form-group">
+                <label for="bloodPressureSystolic" class="form-label">Blood Pressure (Systolic)</label>
+                <input type="number" id="bloodPressureSystolic" name="bloodPressureSystolic" class="form-input" placeholder="120">
+              </div>
+              
+              <div class="form-group">
+                <label for="bloodPressureDiastolic" class="form-label">Blood Pressure (Diastolic)</label>
+                <input type="number" id="bloodPressureDiastolic" name="bloodPressureDiastolic" class="form-input" placeholder="80">
+              </div>
+              
+              <div class="form-group">
+                <label for="alt" class="form-label">ALT (Liver Enzyme) U/L</label>
+                <input type="number" id="alt" name="alt" class="form-input" placeholder="25">
+              </div>
+              
+              <div class="form-group">
+                <label for="ast" class="form-label">AST (Liver Enzyme) U/L</label>
+                <input type="number" id="ast" name="ast" class="form-input" placeholder="30">
+              </div>
+            </div>
+          </div>
+          
+          <!-- Step 3: Lifestyle -->
+          <div class="step-content" data-step="3">
+            <div class="mb-6">
+              <h2 class="text-2xl font-bold mb-4">Lifestyle Factors</h2>
+              <p style="color: var(--muted-foreground);">Tell us about your daily habits and lifestyle choices</p>
+            </div>
+            
+            <div class="grid grid-cols-1 grid-md-cols-2 gap-6">
+              <div class="form-group">
+                <label for="sleepHours" class="form-label">Average Sleep (hours/night)</label>
+                <input type="number" id="sleepHours" name="sleepHours" class="form-input" placeholder="7">
+              </div>
+              
+              <div class="form-group">
+                <label for="exerciseFrequency" class="form-label">Exercise Frequency</label>
+                <select id="exerciseFrequency" name="exerciseFrequency" class="form-input">
+                  <option value="">Select frequency</option>
+                  <option value="none">None</option>
+                  <option value="1-2">1-2 times per week</option>
+                  <option value="3-4">3-4 times per week</option>
+                  <option value="5+">5+ times per week</option>
+                </select>
+              </div>
+              
+              <div class="form-group">
+                <label for="smokingStatus" class="form-label">Smoking Status</label>
+                <select id="smokingStatus" name="smokingStatus" class="form-input">
+                  <option value="">Select status</option>
+                  <option value="never">Never</option>
+                  <option value="former">Former smoker</option>
+                  <option value="occasional">Occasional</option>
+                  <option value="regular">Regular smoker</option>
+                </select>
+              </div>
+              
+              <div class="form-group">
+                <label for="alcoholConsumption" class="form-label">Alcohol Consumption</label>
+                <select id="alcoholConsumption" name="alcoholConsumption" class="form-input">
+                  <option value="">Select frequency</option>
+                  <option value="none">None</option>
+                  <option value="occasional">Occasional</option>
+                  <option value="moderate">Moderate</option>
+                  <option value="heavy">Heavy</option>
+                </select>
+              </div>
+              
+              <div class="form-group" style="grid-column: 1 / -1;">
+                <label for="dietQuality" class="form-label">Diet Quality</label>
+                <select id="dietQuality" name="dietQuality" class="form-input">
+                  <option value="">Select diet quality</option>
+                  <option value="poor">Poor (mostly processed foods)</option>
+                  <option value="fair">Fair (mixed diet)</option>
+                  <option value="good">Good (balanced diet)</option>
+                  <option value="excellent">Excellent (whole foods, balanced)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Step 4: Mental Health -->
+          <div class="step-content" data-step="4">
+            <div class="mb-6">
+              <h2 class="text-2xl font-bold mb-4">Mental Health & Stress</h2>
+              <p style="color: var(--muted-foreground);">Mental health is crucial for overall wellbeing. Rate your current state.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 grid-md-cols-2 gap-6">
+              <div class="form-group">
+                <label for="stressLevel" class="form-label">Stress Level</label>
+                <select id="stressLevel" name="stressLevel" class="form-input">
+                  <option value="">Select level</option>
+                  <option value="low">Low</option>
+                  <option value="moderate">Moderate</option>
+                  <option value="high">High</option>
+                  <option value="severe">Severe</option>
+                </select>
+              </div>
+              
+              <div class="form-group">
+                <label for="anxietyLevel" class="form-label">Anxiety Level</label>
+                <select id="anxietyLevel" name="anxietyLevel" class="form-input">
+                  <option value="">Select level</option>
+                  <option value="none">None</option>
+                  <option value="mild">Mild</option>
+                  <option value="moderate">Moderate</option>
+                  <option value="severe">Severe</option>
+                </select>
+              </div>
+              
+              <div class="form-group">
+                <label for="depressionSymptoms" class="form-label">Depression Symptoms</label>
+                <select id="depressionSymptoms" name="depressionSymptoms" class="form-input">
+                  <option value="">Select frequency</option>
+                  <option value="none">None</option>
+                  <option value="rarely">Rarely</option>
+                  <option value="sometimes">Sometimes</option>
+                  <option value="often">Often</option>
+                </select>
+              </div>
+              
+              <div class="form-group">
+                <label for="workLifeBalance" class="form-label">Work-Life Balance</label>
+                <select id="workLifeBalance" name="workLifeBalance" class="form-input">
+                  <option value="">Select balance</option>
+                  <option value="poor">Poor</option>
+                  <option value="fair">Fair</option>
+                  <option value="good">Good</option>
+                  <option value="excellent">Excellent</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Step 5: Family History -->
+          <div class="step-content" data-step="5">
+            <div class="mb-6">
+              <h2 class="text-2xl font-bold mb-4">Family Medical History</h2>
+              <p style="color: var(--muted-foreground);">Family history helps us assess your genetic risk factors for various conditions.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 grid-md-cols-2 gap-6">
+              <div class="form-group">
+                <label for="familyDiabetes" class="form-label">Family History of Diabetes</label>
+                <select id="familyDiabetes" name="familyDiabetes" class="form-input">
+                  <option value="">Select</option>
+                  <option value="none">No family history</option>
+                  <option value="distant">Distant relatives</option>
+                  <option value="immediate">Immediate family</option>
+                  <option value="multiple">Multiple family members</option>
+                </select>
+              </div>
+              
+              <div class="form-group">
+                <label for="familyHeartDisease" class="form-label">Family History of Heart Disease</label>
+                <select id="familyHeartDisease" name="familyHeartDisease" class="form-input">
+                  <option value="">Select</option>
+                  <option value="none">No family history</option>
+                  <option value="distant">Distant relatives</option>
+                  <option value="immediate">Immediate family</option>
+                  <option value="multiple">Multiple family members</option>
+                </select>
+              </div>
+              
+              <div class="form-group">
+                <label for="familyHypertension" class="form-label">Family History of Hypertension</label>
+                <select id="familyHypertension" name="familyHypertension" class="form-input">
+                  <option value="">Select</option>
+                  <option value="none">No family history</option>
+                  <option value="distant">Distant relatives</option>
+                  <option value="immediate">Immediate family</option>
+                  <option value="multiple">Multiple family members</option>
+                </select>
+              </div>
+              
+              <div class="form-group">
+                <label for="familyCancer" class="form-label">Family History of Cancer</label>
+                <select id="familyCancer" name="familyCancer" class="form-input">
+                  <option value="">Select</option>
+                  <option value="none">No family history</option>
+                  <option value="distant">Distant relatives</option>
+                  <option value="immediate">Immediate family</option>
+                  <option value="multiple">Multiple family members</option>
+                </select>
+              </div>
+              
+              <div class="form-group" style="grid-column: 1 / -1;">
+                <label for="otherConditions" class="form-label">Other Hereditary Conditions</label>
+                <textarea 
+                  id="otherConditions" 
+                  name="otherConditions" 
+                  class="form-input" 
+                  rows="4" 
+                  placeholder="List any other significant hereditary conditions in your family (e.g., thyroid disorders, kidney disease, etc.)"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Navigation -->
+          <div class="nav-buttons">
+            <button type="button" class="btn btn-outline" id="prevBtn" onclick="changeStep(-1)" disabled>
+              <svg style="width: 16px; height: 16px; margin-right: 0.5rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+              </svg>
+              Previous
+            </button>
+            
+            <button type="button" class="btn btn-primary" id="nextBtn" onclick="changeStep(1)">
+              Next
+              <svg style="width: 16px; height: 16px; margin-left: 0.5rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+              </svg>
+            </button>
+            
+            <button type="submit" class="btn btn-primary" id="submitBtn" style="display: none;">
+              Complete Assessment
+              <svg style="width: 16px; height: 16px; margin-left: 0.5rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+              </svg>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    let currentStep = 1
+    const totalSteps = 5
+    
+    function changeStep(direction) {
+      const steps = document.querySelectorAll('.step-content')
+      steps[currentStep - 1].classList.remove('active')
+      
+      currentStep += direction
+      
+      if (currentStep < 1) currentStep = 1
+      if (currentStep > totalSteps) currentStep = totalSteps
+      
+      steps[currentStep - 1].classList.add('active')
+      
+      // Update progress bar
+      const progress = (currentStep / totalSteps) * 100
+      document.getElementById('progress').style.width = progress + '%'
+      
+      // Update buttons
+      document.getElementById('prevBtn').disabled = currentStep === 1
+      
+      if (currentStep === totalSteps) {
+        document.getElementById('nextBtn').style.display = 'none'
+        document.getElementById('submitBtn').style.display = 'inline-flex'
+      } else {
+        document.getElementById('nextBtn').style.display = 'inline-flex'
+        document.getElementById('submitBtn').style.display = 'none'
+      }
+    }
+  </script>
+  
+  <script src="/script.js"></script>
+</body>
+</html>

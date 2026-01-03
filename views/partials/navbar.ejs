@@ -1,0 +1,32 @@
+<nav class="navbar">
+  <div class="navbar-content max-w-6xl mx-auto">
+    <a href="/" class="logo">
+      <div class="logo-icon">ED</div>
+      <span class="font-semibold text-lg">EarlyDetect</span>
+    </a>
+    
+    <div class="nav-links">
+      <a href="/#how-it-works" class="nav-link">How It Works</a>
+      <a href="/#for-patients" class="nav-link">For Patients</a>
+      <a href="/#for-doctors" class="nav-link">For Doctors</a>
+      <a href="/signin" class="btn btn-outline">Sign In</a>
+      <a href="/assessment" class="btn btn-primary">Get Started</a>
+    </div>
+    
+    <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+      <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+      </svg>
+    </button>
+  </div>
+  
+  <div id="mobile-menu" class="mobile-menu hidden">
+    <a href="/#how-it-works">How It Works</a>
+    <a href="/#for-patients">For Patients</a>
+    <a href="/#for-doctors">For Doctors</a>
+    <div style="padding-top: 0.5rem;">
+      <a href="/signin" class="btn btn-outline w-full" style="margin-bottom: 0.5rem;">Sign In</a>
+      <a href="/assessment" class="btn btn-primary w-full">Get Started</a>
+    </div>
+  </div>
+</nav>
